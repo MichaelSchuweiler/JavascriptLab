@@ -1,0 +1,101 @@
+<!--Dillon Stenberg and Michael Schuweiler-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Text Editor</title>
+    <script src="Function.js"></script>
+    <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        var magicMaker = allFunctions();
+
+        function displayTheElement () {
+            var toSet = "";
+            toSet += countCharacters(document.getElementById("textArea").value);
+            document.getElementById("changeMe").innerHTML = toSet;
+            return toSet;
+        }
+
+        function saveIt (){
+            var saved = magicMaker.save(document.getElementById("textArea").value);
+            //output += saveArray[saveCount];
+            document.getElementById("saved").innerHTML = saved;
+        }
+        function undoIt(){
+            var saved = magicMaker.undo();
+            document.getElementById("textArea").value = saved;
+        }
+
+        function redoIt(){
+            var saved = magicMaker.redo();
+            document.getElementById("textArea").value = saved;
+        }
+
+        function findWord (){
+            var saved = findText(document.getElementById("input"),document.getElementById("textArea").value);
+        }
+
+        $(document).ready(function() {
+            $("#textArea").keypress(function() {
+                if(countCharacters(document.getElementById("textArea").value) == 50) {
+                    $("#textArea").css("background-color","blue");
+                    $("#textArea").css("color","white");
+                } else if(countCharacters(document.getElementById("textArea").value) < 50) {
+                    $("#textArea").css("background-color","white");
+                    $("#textArea").css("color","black");
+                }
+            })
+
+            $("#Hide").click(function() {
+                $("#textArea").hide();
+            })
+
+            $("#Unhide").click(function() {
+                $("#textArea").show();
+            })
+
+            $("#size").click(function(){
+                $("#textArea").css({"font-size":"+=1px"});
+            })
+
+            $("#color").click(function(){
+                $("#textArea").css("color","red");
+            })
+
+            $("#Search").click(function(){
+                $("#lookup").css({backgroundColor:"#FFFF88"});
+            })
+        });
+
+    </script>
+</head>
+<body>
+
+<h1>Text Editor</h1>
+
+    <button id="size">Size</button>
+    <button id="color">Color</button>
+
+<form name="createAnElement">
+    <input id="Search" type="button" value="Search" onclick="findWord()" />
+    <input id="input" type="text" value="Type word here"/>
+    <br />
+    <textarea rows="5" cols=hide"50" maxlength="50" id="textArea" type="text"></textarea>
+    <br />
+    <input type="button" value="Count Characters" onclick="displayTheElement()" />
+    <br />
+    <input type="button" value="Save" onclick="saveIt()" />
+    <input type="button" value="Undo" onclick="undoIt()" />
+    <input type="button" value="Redo" onclick="redoIt()" />
+</form>
+
+<button id="Hide">Hide</button>
+<button id="Unhide">Unhide</button>
+
+
+
+<div id="changeMe"></div>
+<br />
+<div id="saved"></div>
+</body>
+</html>
