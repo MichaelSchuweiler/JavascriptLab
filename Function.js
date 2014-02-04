@@ -6,11 +6,7 @@
 function countCharacters(content) {
     var count = 0;
     for(var i = 0; i < content.length; ++i) {
-        if(content[i]==" ") {
-        }
-        else {
-            count++;
-        }
+        count++;
     }
     return count;
 }
@@ -24,7 +20,7 @@ function allFunctions(){
                 array[index] = content;
                 index++;
             }
-            return array[index - 1];
+           // return array[index - 1];
 
         },
         undo: function(){
@@ -64,14 +60,15 @@ function allFunctions(){
     }
 }
 
+//Our findText function does not work
 function findText(input, content){
-    this.input = input;
-    this.content = content;
-        if(input == content) {
-            return content;
-        } else if(input != content) {
-            return null;
-        }
+    var input2 = parseInt(input);
+    var content2 = parseInt(content);
+    if(input == content) {
+        return input;
+    } else if(input != content) {
+        //return null;
+    }
 }
 
 module.exports.countCharacters = countCharacters;

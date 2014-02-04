@@ -19,7 +19,7 @@
         function saveIt (){
             var saved = magicMaker.save(document.getElementById("textArea").value);
             //output += saveArray[saveCount];
-            document.getElementById("saved").innerHTML = saved;
+            //document.getElementById("saved").innerHTML = saved;
         }
         function undoIt(){
             var saved = magicMaker.undo();
@@ -33,6 +33,7 @@
 
         function findWord (){
             var saved = findText(document.getElementById("input"),document.getElementById("textArea").value);
+            document.getElementById("found").innerHTML = saved;
         }
 
         $(document).ready(function() {
@@ -71,19 +72,20 @@
 </head>
 <body>
 
-<h1>Text Editor</h1>
+<h1>Javascript Lab</h1>
 
-    <button id="size">Size</button>
-    <button id="color">Color</button>
+<button id="size">Size</button>
+<button id="color">Color</button>
 
 <form name="createAnElement">
     <input id="Search" type="button" value="Search" onclick="findWord()" />
-    <input id="input" type="text" value="Type word here"/>
+    <input id="input" type="text"/>
     <br />
-    <textarea rows="5" cols=hide"50" maxlength="50" id="textArea" type="text"></textarea>
+    <textarea rows="5" cols="50" maxlength="50" id="textArea" type="text"></textarea>
     <br />
     <input type="button" value="Count Characters" onclick="displayTheElement()" />
     <br />
+    <p>In order to redo and undo, you must first save the text</p>
     <input type="button" value="Save" onclick="saveIt()" />
     <input type="button" value="Undo" onclick="undoIt()" />
     <input type="button" value="Redo" onclick="redoIt()" />
@@ -96,6 +98,8 @@
 
 <div id="changeMe"></div>
 <br />
-<div id="saved"></div>
+<!--<div id="saved"></div>
+<br />-->
+<div id="found"></div>
 </body>
 </html>
